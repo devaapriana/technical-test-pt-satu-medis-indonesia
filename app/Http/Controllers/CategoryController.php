@@ -24,10 +24,15 @@ class CategoryController extends Controller
 
     public function index()
     {
-        $categories = Category::paginate(5);
+        $searchKey = request()->query('search');
+        if ($searchKey) {
+            $categories = Category::where('name', $searchKey)->paginate(5);
+        } else {
+            $categories = Category::paginate(5);
+        }
         return response()->json([
             "message" => "Get data categories successfully",
-            "data" => [$categories]
+            "data" => $categories
         ]);
     }
 
