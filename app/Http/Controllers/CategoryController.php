@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CategoryCreateRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -27,6 +28,18 @@ class CategoryController extends Controller
         return response()->json([
             "message" => "Get data categories successfully",
             "data" => [$categories]
+        ]);
+    }
+
+    public function update(CategoryUpdateRequest $request, Category $category)
+    {
+        $dataValidated = $request->validated();
+        $category = Category::find($category)->first();
+        $category->name = $dataValidated['name'];
+        $category->save();
+        return response()->json([
+            "message" => "Update data cetegory successfully",
+            "data" => $category
         ]);
     }
 }
