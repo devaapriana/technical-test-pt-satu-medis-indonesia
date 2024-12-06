@@ -20,4 +20,13 @@ class CategoryController extends Controller
             'data' => [$category]
         ]);
     }
+
+    public function index()
+    {
+        $categories = Category::paginate(5);
+        return response()->json([
+            "message" => "Get data categories successfully",
+            "data" => [$categories]
+        ]);
+    }
 }

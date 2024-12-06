@@ -16,6 +16,7 @@ Route::group([
 
         //categories
         Route::post('/categories', [CategoryController::class, 'store']);
+        Route::get('/categories', [CategoryController::class, 'index']);
     });
 
 });
