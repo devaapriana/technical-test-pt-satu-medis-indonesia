@@ -34,12 +34,19 @@ class CategoryController extends Controller
     public function update(CategoryUpdateRequest $request, Category $category)
     {
         $dataValidated = $request->validated();
-        $category = Category::find($category)->first();
         $category->name = $dataValidated['name'];
         $category->save();
         return response()->json([
             "message" => "Update data cetegory successfully",
             "data" => $category
+        ]);
+    }
+
+    public function destroy(Category $category)
+    {
+        $category->delete();
+        return response()->json([
+            "message" => "Delete data cetegory successfully",
         ]);
     }
 }
