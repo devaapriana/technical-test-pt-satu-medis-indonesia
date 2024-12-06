@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -12,5 +13,11 @@ Route::group([
         Route::post('me', [AuthController::class, 'me']);
         Route::post('logout', [AuthController::class, 'logout']);
         Route::post('refresh', [AuthController::class, 'refresh']);
+
+        //categories
+        Route::post('/categories', [CategoryController::class, 'store']);
     });
+
 });
+
+
